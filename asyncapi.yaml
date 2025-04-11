@@ -1,0 +1,87 @@
+asyncapi: 3.0.0
+info:
+  contact:
+    name: Ederson Torresini
+    email: etorresini@ifsc.edu.br
+  description: Sistema de coleta de estações meteorológicas
+  license:
+    name: MIT
+    url: 'https://opensource.org/licenses/MIT'
+  title: Estação Meteorológica
+  version: 0.1.0
+  externalDocs:
+    url: 'https://github.com/estacao-meteorologica/docs'
+  tags:
+    - $ref: '#/components/tags/weather-station'
+    - $ref: '#/components/tags/server'
+servers:
+  development:
+    host: localhost
+    description: MQTT over WebSocket server
+    pathname: /api/v0
+    protocol: ws
+  production:
+    host: em.sj.ifsc.edu.br
+    description: MQTT over WebSockets server
+    pathname: /api/v0
+    protocol: wss
+defaultContentType: application/json
+channels:
+  weather-station:
+    address: weather-station
+    messages:
+      status:
+        $ref: '#/components/messages/status'
+        tags:
+          - $ref: '#/components/tags/weather-station'
+    tags:
+      - $ref: '#/components/tags/weather-station'
+operations:
+  onStatusReceive:
+    action: receive
+    channel:
+      $ref: '#/channels/weather-station'
+    messages:
+      - $ref: '#/channels/weather-station/messages/status'
+    tags:
+      - $ref: '#/components/tags/weather-station'
+components:
+  messages:
+    status:
+      payload:
+        type: object
+        properties:
+          client_id:
+            type: string
+            description: Client ID
+          timestamp:
+            type: string
+            description: Timestamp
+          temperature:
+            type: number
+            description: Temperature in degree Celsius
+          pressure:
+            type: number
+            description: Pressure in kPa
+          co:
+            type: number
+            description: Carbon monoxide in ppm
+          co2:
+            type: number
+            description: Carbon monoxide in ppm
+          methane:
+            type: number
+            description: Methane in ppm
+        required:
+          - client_id
+        examples:
+          - client_id: abc
+            timestamp: 1744394556
+            temperature: 25
+  tags:
+    weather-station:
+      name: weather-station
+      description: Weather station messages
+    server:
+      name: server
+      description: Server messages
