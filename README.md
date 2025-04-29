@@ -33,10 +33,14 @@ MQTT_BROKER=mqtt-broker
 
 ## *Hardware*
 
-O repositório [*hardware*](https://github.com/estacao-meteorologica/hardware) tem código está projetado para [ESP32 da Expressif](https://www.espressif.com/en/products/socs/esp32) ([código](https://github.com/espressif/arduino-esp32)), e possui as seguintes dependências:
+O repositório [*hardware*](https://github.com/estacao-meteorologica/hardware) tem código projetado para [ESP32 da Expressif](https://www.espressif.com/en/products/socs/esp32) ([código](https://github.com/espressif/arduino-esp32)).
+
+Há duas frentes de trabalho. Na primeira, é usado código C/C++ nativo do Arduino, e possui as seguintes dependências:
 
 1. [PubSubClient](https://pubsubclient.knolleary.net/)
 1. [DallasTemperature](https://github.com/milesburton/Arduino-Temperature-Control-Library)
 1. [OneWire](https://www.pjrc.com/teensy/td_libs_OneWire.html)
 1. [TinyDHT sensor library](https://github.com/adafruit/TinyDHT)
 1. [Adafruit BMP280 Library](https://github.com/adafruit/Adafruit_BMP280_Library)
+
+Na segunda, frente, está em estudo o uso de [MicroPython](https://docs.micropython.org/en/latest/esp32/quickref.html#).
