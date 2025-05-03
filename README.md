@@ -35,7 +35,11 @@ MQTT_BROKER=mqtt-broker
 
 O repositório [*hardware*](https://github.com/estacao-meteorologica/hardware) tem código projetado para [ESP32 da Expressif](https://www.espressif.com/en/products/socs/esp32) ([código](https://github.com/espressif/arduino-esp32)).
 
-Há duas frentes de trabalho. Na primeira, é usado código C/C++ nativo do Arduino, e possui as seguintes dependências:
+Há duas frentes de trabalho.
+
+### C/C++
+
+Na primeira abordagem, é usado código C/C++ nativo do Arduino, e possui as seguintes dependências:
 
 1. [PubSubClient](https://pubsubclient.knolleary.net/)
 1. [DallasTemperature](https://github.com/milesburton/Arduino-Temperature-Control-Library)
@@ -43,4 +47,25 @@ Há duas frentes de trabalho. Na primeira, é usado código C/C++ nativo do Ardu
 1. [TinyDHT sensor library](https://github.com/adafruit/TinyDHT)
 1. [Adafruit BMP280 Library](https://github.com/adafruit/Adafruit_BMP280_Library)
 
-Na segunda, frente, está em estudo o uso de [MicroPython](https://docs.micropython.org/en/latest/esp32/quickref.html#).
+### MicroPython
+
+Em paralelo, há estudo de [MicroPython](https://docs.micropython.org/en/latest/esp32/quickref.html#), que requer o arquivo de configuração `.env` conforme o exemplo a seguir:
+
+```ini
+WIFI_SSID=em
+WIFI_KEY=estacao-meteorologica
+MQTT_CLIENT_ID=EMv0
+MQTT_BROKER=em.sj.ifsc.edu.br
+```
+
+O arquivo `Makefile` contém todos os comandos necessários para instalar as dependências:
+
+```sh
+make
+```
+
+bem como instalar o código da aplicação:
+
+```sh
+make write
+```
