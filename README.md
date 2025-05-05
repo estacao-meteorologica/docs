@@ -54,6 +54,8 @@ Em paralelo, há estudo de [MicroPython](https://docs.micropython.org/en/latest/
 ```ini
 WIFI_SSID=em
 WIFI_KEY=estacao-meteorologica
+NTP_POOL=pool.ntp.br
+NTP_TIMEOUT=1
 MQTT_CLIENT_ID=EMv0
 MQTT_BROKER=em.sj.ifsc.edu.br
 ```
